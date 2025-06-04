@@ -1,4 +1,4 @@
-package gui.app.chat;
+package gui.app.chat.ex2;
 
 import java.awt.EventQueue;
 
@@ -81,7 +81,7 @@ public class ChatClient {
 		frmChatServer = new JFrame();
 		frmChatServer.setTitle("Chat Client");
 		frmChatServer.setBounds(100, 100, 450, 507);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmChatServer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 0));
@@ -152,9 +152,15 @@ public class ChatClient {
 				
 		try {
 			String outMsg = tfInput.getText();
+			// #id#1#outMsg#id
 			out.write(outMsg + "\n");
 			out.flush();
-			taChat.append("[클라이언트] : " + outMsg + "\n");
+//			
+			if(outMsg.equalsIgnoreCase("bye")) {
+				this.frmChatServer.dispose();
+			}
+			
+			
 			tfInput.setText("");
 			tfInput.requestFocus();		
 		} catch (IOException e) {
